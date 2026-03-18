@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Photo</title>
+    <link rel="stylesheet" href="view.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body class="view-page-body">
+
+
+    <main class="editorial-card">
+
+        <section class="card-image-side">
+            <div class="medium-image-frame">
+                <img id="display-image" src="" alt="Loading..." crossorigin="anonymous">
+            </div>
+        </section>
+
+        <section class="card-info-side">
+            <nav class="card-nav">
+                <a href="gallery.html" class="btn btn-outline">← Back to Gallery</a>
+                <button id="btn-edit" class="btn btn-solid" style="margin-left: 10px;">✎ Edit</button>
+            </nav>
+
+            <div id="edit-modal" class="modal-overlay">
+                <div class="modal-content">
+                    <button id="close-edit-modal" class="close-btn">&times;</button>
+                    <h2 class="modal-title">Edit Memory</h2>
+
+                    <div class="input-group">
+                        <input type="text" id="edit-name" placeholder="Title" required>
+                        <input type="text" id="edit-desc" placeholder="Story" required>
+                    </div>
+
+                    <div class="action-group">
+                        <input type="file" id="edit-image-upload" accept="image/*" hidden>
+                        <label for="edit-image-upload" id="edit-file-label" class="btn btn-outline">Change Photo
+                            (Optional)</label>
+                        <button id="update-btn" class="btn btn-solid">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-details">
+                <h1 id="display-name">Loading...</h1>
+                <p id="display-desc">Please wait.</p>
+
+                <div class="download-actions">
+                    <button id="btn-download-png" class="btn btn-solid">↓ Highest Quality PNG</button>
+                    <button id="btn-download-pdf" class="btn btn-outline">↓ Save as PDF</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="view.js"></script>
+</body>
+
+</html>

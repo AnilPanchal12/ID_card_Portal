@@ -1,0 +1,297 @@
+/* ==========================================================================
+   gallery.css (Main Gallery Page)
+   ========================================================================== */
+
+:root {
+    --bg-color: #0B0C10;
+    --card-bg: #1F2833;
+    --text-main: #C5C6C7;
+    --accent: #66FCF1;
+    --accent-muted: #45A29E;
+    --glass-bg: rgba(31, 40, 51, 0.7);
+}
+
+
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    background-image: radial-gradient(circle at 50% 0%, #1F2833 0%, #0B0C10 70%);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+/* --- Header --- */
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    font-weight: 300;
+    color: var(--accent-muted);
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+}
+
+/* --- Glassmorphism Upload Panel --- */
+.upload-glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(102, 252, 241, 0.15);
+    border-radius: 24px;
+    padding: 2rem;
+    max-width: 700px;
+    margin: 0 auto 4rem auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.input-group input {
+    flex: 1;
+    min-width: 250px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--accent-muted);
+    padding: 0.5rem 0;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    transition: all 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-bottom-color: var(--accent);
+}
+
+.input-group input::placeholder { 
+    color: #5c646e; 
+}
+
+.action-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* --- Navigation & Modals --- */
+.top-nav {
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    width: 100%;
+    padding: 0 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.nav-btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.85rem;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(11, 12, 16, 0.85); /* Darkened overlay */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    transform: translateY(30px) scale(0.95);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0) scale(1);
+}
+
+.modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 400;
+}
+
+.close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--accent-muted);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: var(--accent);
+}
+
+/* --- Buttons --- */
+.btn {
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+}
+
+.btn-outline:hover, .btn-outline.has-file {
+    background: var(--accent);
+    color: var(--bg-color);
+}
+
+.btn-solid {
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    color: var(--bg-color);
+    box-shadow: 0 4px 15px rgba(102, 252, 241, 0.15);
+}
+
+.btn-solid:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 252, 241, 0.3);
+}
+
+/* --- Dynamic Masonry Gallery Grid --- */
+.gallery-grid {
+    column-count: 1;
+    column-gap: 2rem;
+    width: 100%;
+}
+
+@media (min-width: 600px) { .gallery-grid { column-count: 2; } }
+@media (min-width: 900px) { .gallery-grid { column-count: 3; } }
+@media (min-width: 1200px) { .gallery-grid { column-count: 4; } }
+
+.image-card {
+    background: var(--card-bg);
+    padding: 12px 12px 20px 12px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: fadeUp 0.8s ease backwards;
+    break-inside: avoid;
+    margin-bottom: 2rem;
+    display: inline-block;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Slight separation edge */
+}
+
+.image-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(102, 252, 241, 0.15); /* Cyan glow on hover */
+}
+
+.image-container {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto; 
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.image-card:hover .image-container img {
+    transform: scale(1.03);
+}
+
+.card-info {
+    text-align: center;
+    padding: 0 0.5rem;
+}
+
+.card-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+    color: var(--text-main);
+}
+
+.card-info p {
+    font-size: 0.85rem;
+    color: var(--accent-muted);
+    font-weight: 300;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetic Gallery</title>
+    <link rel="stylesheet" href="gallery.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+
+    <div class="top-nav">
+        <a href="index.html" class="btn btn-outline nav-btn">← Home</a>
+        <button id="open-add-modal" class="btn btn-solid nav-btn">+ Add Image</button>
+    </div>
+
+    <div class="wrapper">
+        <header class="header">
+            <h1>Art works</h1>
+            <p>A gentle collection of visual whispers.</p>
+        </header>
+
+        <div id="upload-modal" class="modal-overlay">
+            <div class="upload-glass modal-content">
+                <button id="close-modal" class="close-btn">&times;</button>
+                <h2 class="modal-title">Add a New Memory</h2>
+
+                <div class="input-group">
+                    <input type="text" id="img-name" placeholder="Title (e.g., Trackside Sunset)" required>
+                    <input type="text" id="img-desc" placeholder="Story (e.g., Late night drives...)" required>
+                </div>
+
+                <div class="action-group">
+                    <input type="file" id="image-upload" accept="image/*" hidden required>
+                    <label for="image-upload" id="file-label" class="btn btn-outline">Choose Photo</label>
+                    <button id="save-btn" class="btn btn-solid">Add to Gallery</button>
+                </div>
+            </div>
+        </div>
+
+        <main class="gallery-grid" id="gallery">
+        </main>
+    </div>
+
+    <script src="gallery.js"></script>
+</body>
+
+</html>
